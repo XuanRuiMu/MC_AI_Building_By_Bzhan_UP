@@ -1,0 +1,47 @@
+{
+  "name": "nbtify",
+  "version": "2.2.0",
+  "description": "A library to read and write NBT files on the web!",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "nbtify": "dist/bin/index.js"
+  },
+  "scripts": {
+    "build": "tsc --project ./tsconfig.build.json",
+    "dev": "tsc --watch",
+    "test": "tsx --test --watch ./test/index.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Offroaders123/NBTify.git"
+  },
+  "keywords": [
+    "javascript",
+    "minecraft",
+    "typescript",
+    "nbt",
+    "nbt-parser",
+    "minecraft-bedrock-edition",
+    "bedrock-edition",
+    "java-edition",
+    "nbt-library",
+    "minecraft-java-edition"
+  ],
+  "author": "Brandon Bennett <offroaders123@gmail.com> (https://github.com/Offroaders123)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Offroaders123/NBTify/issues"
+  },
+  "homepage": "https://github.com/Offroaders123/NBTify#readme",
+  "dependencies": {
+    "mutf-8": "^1.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.8.1",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
+  },
+  "sideEffects": false
+}

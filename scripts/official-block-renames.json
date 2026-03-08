@@ -1,0 +1,1160 @@
+{
+  "bee_nest": {
+    "1.14": null
+  },
+  "beehive": {
+    "1.14": null
+  },
+  "honey_block": {
+    "1.14": null
+  },
+  "honeycomb_block": {
+    "1.14": null
+  },
+  "ancient_debris": {
+    "1.15": null
+  },
+  "basalt": {
+    "1.15": null
+  },
+  "blackstone": {
+    "1.15": null
+  },
+  "blackstone_slab": {
+    "1.15": null
+  },
+  "blackstone_stairs": {
+    "1.15": null
+  },
+  "blackstone_wall": {
+    "1.15": null
+  },
+  "chain": {
+    "1.15": null
+  },
+  "chiseled_nether_bricks": {
+    "1.15": null
+  },
+  "chiseled_polished_blackstone": {
+    "1.15": null
+  },
+  "cracked_nether_bricks": {
+    "1.15": null
+  },
+  "cracked_polished_blackstone_bricks": {
+    "1.15": null
+  },
+  "crimson_button": {
+    "1.15": null
+  },
+  "crimson_door": {
+    "1.15": null
+  },
+  "crimson_fence": {
+    "1.15": null
+  },
+  "crimson_fence_gate": {
+    "1.15": null
+  },
+  "crimson_fungus": {
+    "1.15": null
+  },
+  "crimson_hyphae": {
+    "1.15": null
+  },
+  "crimson_nylium": {
+    "1.15": null
+  },
+  "crimson_planks": {
+    "1.15": null
+  },
+  "crimson_pressure_plate": {
+    "1.15": null
+  },
+  "crimson_roots": {
+    "1.15": null
+  },
+  "crimson_sign": {
+    "1.15": null
+  },
+  "crimson_slab": {
+    "1.15": null
+  },
+  "crimson_stairs": {
+    "1.15": null
+  },
+  "crimson_stem": {
+    "1.15": null
+  },
+  "crimson_trapdoor": {
+    "1.15": null
+  },
+  "crimson_wall_sign": {
+    "1.15": null
+  },
+  "crying_obsidian": {
+    "1.15": null
+  },
+  "gilded_blackstone": {
+    "1.15": null
+  },
+  "lodestone": {
+    "1.15": null
+  },
+  "nether_gold_ore": {
+    "1.15": null
+  },
+  "nether_sprouts": {
+    "1.15": null
+  },
+  "netherite_block": {
+    "1.15": null
+  },
+  "polished_basalt": {
+    "1.15": null
+  },
+  "polished_blackstone": {
+    "1.15": null
+  },
+  "polished_blackstone_brick_slab": {
+    "1.15": null
+  },
+  "polished_blackstone_brick_stairs": {
+    "1.15": null
+  },
+  "polished_blackstone_brick_wall": {
+    "1.15": null
+  },
+  "polished_blackstone_bricks": {
+    "1.15": null
+  },
+  "polished_blackstone_button": {
+    "1.15": null
+  },
+  "polished_blackstone_pressure_plate": {
+    "1.15": null
+  },
+  "polished_blackstone_slab": {
+    "1.15": null
+  },
+  "polished_blackstone_stairs": {
+    "1.15": null
+  },
+  "polished_blackstone_wall": {
+    "1.15": null
+  },
+  "potted_crimson_fungus": {
+    "1.15": null
+  },
+  "potted_crimson_roots": {
+    "1.15": null
+  },
+  "potted_warped_fungus": {
+    "1.15": null
+  },
+  "potted_warped_roots": {
+    "1.15": null
+  },
+  "quartz_bricks": {
+    "1.15": null
+  },
+  "respawn_anchor": {
+    "1.15": null
+  },
+  "shroomlight": {
+    "1.15": null
+  },
+  "soul_campfire": {
+    "1.15": null
+  },
+  "soul_fire": {
+    "1.15": null
+  },
+  "soul_lantern": {
+    "1.15": null
+  },
+  "soul_soil": {
+    "1.15": null
+  },
+  "soul_torch": {
+    "1.15": null
+  },
+  "soul_wall_torch": {
+    "1.15": null
+  },
+  "stripped_crimson_hyphae": {
+    "1.15": null
+  },
+  "stripped_crimson_stem": {
+    "1.15": null
+  },
+  "stripped_warped_hyphae": {
+    "1.15": null
+  },
+  "stripped_warped_stem": {
+    "1.15": null
+  },
+  "target": {
+    "1.15": null
+  },
+  "twisting_vines": {
+    "1.15": null
+  },
+  "twisting_vines_plant": {
+    "1.15": null
+  },
+  "warped_button": {
+    "1.15": null
+  },
+  "warped_door": {
+    "1.15": null
+  },
+  "warped_fence": {
+    "1.15": null
+  },
+  "warped_fence_gate": {
+    "1.15": null
+  },
+  "warped_fungus": {
+    "1.15": null
+  },
+  "warped_hyphae": {
+    "1.15": null
+  },
+  "warped_nylium": {
+    "1.15": null
+  },
+  "warped_planks": {
+    "1.15": null
+  },
+  "warped_pressure_plate": {
+    "1.15": null
+  },
+  "warped_roots": {
+    "1.15": null
+  },
+  "warped_sign": {
+    "1.15": null
+  },
+  "warped_slab": {
+    "1.15": null
+  },
+  "warped_stairs": {
+    "1.15": null
+  },
+  "warped_stem": {
+    "1.15": null
+  },
+  "warped_trapdoor": {
+    "1.15": null
+  },
+  "warped_wall_sign": {
+    "1.15": null
+  },
+  "warped_wart_block": {
+    "1.15": null
+  },
+  "weeping_vines": {
+    "1.15": null
+  },
+  "weeping_vines_plant": {
+    "1.15": null
+  },
+  "amethyst_block": {
+    "1.16": null
+  },
+  "amethyst_cluster": {
+    "1.16": null
+  },
+  "azalea": {
+    "1.16": null
+  },
+  "azalea_leaves": {
+    "1.16": null
+  },
+  "big_dripleaf": {
+    "1.16": null
+  },
+  "big_dripleaf_stem": {
+    "1.16": null
+  },
+  "black_candle": {
+    "1.16": null
+  },
+  "black_candle_cake": {
+    "1.16": null
+  },
+  "blue_candle": {
+    "1.16": null
+  },
+  "blue_candle_cake": {
+    "1.16": null
+  },
+  "brown_candle": {
+    "1.16": null
+  },
+  "brown_candle_cake": {
+    "1.16": null
+  },
+  "budding_amethyst": {
+    "1.16": null
+  },
+  "calcite": {
+    "1.16": null
+  },
+  "candle": {
+    "1.16": null
+  },
+  "candle_cake": {
+    "1.16": null
+  },
+  "cave_vines": {
+    "1.16": null
+  },
+  "cave_vines_plant": {
+    "1.16": null
+  },
+  "chiseled_deepslate": {
+    "1.16": null
+  },
+  "cobbled_deepslate": {
+    "1.16": null
+  },
+  "cobbled_deepslate_slab": {
+    "1.16": null
+  },
+  "cobbled_deepslate_stairs": {
+    "1.16": null
+  },
+  "cobbled_deepslate_wall": {
+    "1.16": null
+  },
+  "copper_block": {
+    "1.16": null
+  },
+  "copper_ore": {
+    "1.16": null
+  },
+  "cracked_deepslate_bricks": {
+    "1.16": null
+  },
+  "cracked_deepslate_tiles": {
+    "1.16": null
+  },
+  "cut_copper": {
+    "1.16": null
+  },
+  "cut_copper_slab": {
+    "1.16": null
+  },
+  "cut_copper_stairs": {
+    "1.16": null
+  },
+  "cyan_candle": {
+    "1.16": null
+  },
+  "cyan_candle_cake": {
+    "1.16": null
+  },
+  "deepslate": {
+    "1.16": null
+  },
+  "deepslate_brick_slab": {
+    "1.16": null
+  },
+  "deepslate_brick_stairs": {
+    "1.16": null
+  },
+  "deepslate_brick_wall": {
+    "1.16": null
+  },
+  "deepslate_bricks": {
+    "1.16": null
+  },
+  "deepslate_coal_ore": {
+    "1.16": null
+  },
+  "deepslate_copper_ore": {
+    "1.16": null
+  },
+  "deepslate_diamond_ore": {
+    "1.16": null
+  },
+  "deepslate_emerald_ore": {
+    "1.16": null
+  },
+  "deepslate_gold_ore": {
+    "1.16": null
+  },
+  "deepslate_iron_ore": {
+    "1.16": null
+  },
+  "deepslate_lapis_ore": {
+    "1.16": null
+  },
+  "deepslate_redstone_ore": {
+    "1.16": null
+  },
+  "deepslate_tile_slab": {
+    "1.16": null
+  },
+  "deepslate_tile_stairs": {
+    "1.16": null
+  },
+  "deepslate_tile_wall": {
+    "1.16": null
+  },
+  "deepslate_tiles": {
+    "1.16": null
+  },
+  "dirt_path": {
+    "1.16": null
+  },
+  "dripstone_block": {
+    "1.16": null
+  },
+  "exposed_copper": {
+    "1.16": null
+  },
+  "exposed_cut_copper": {
+    "1.16": null
+  },
+  "exposed_cut_copper_slab": {
+    "1.16": null
+  },
+  "exposed_cut_copper_stairs": {
+    "1.16": null
+  },
+  "flowering_azalea": {
+    "1.16": null
+  },
+  "flowering_azalea_leaves": {
+    "1.16": null
+  },
+  "glow_lichen": {
+    "1.16": null
+  },
+  "gray_candle": {
+    "1.16": null
+  },
+  "gray_candle_cake": {
+    "1.16": null
+  },
+  "green_candle": {
+    "1.16": null
+  },
+  "green_candle_cake": {
+    "1.16": null
+  },
+  "hanging_roots": {
+    "1.16": null
+  },
+  "infested_deepslate": {
+    "1.16": null
+  },
+  "large_amethyst_bud": {
+    "1.16": null
+  },
+  "lava_cauldron": {
+    "1.16": null
+  },
+  "light": {
+    "1.16": null
+  },
+  "light_blue_candle": {
+    "1.16": null
+  },
+  "light_blue_candle_cake": {
+    "1.16": null
+  },
+  "light_gray_candle": {
+    "1.16": null
+  },
+  "light_gray_candle_cake": {
+    "1.16": null
+  },
+  "lightning_rod": {
+    "1.16": null
+  },
+  "lime_candle": {
+    "1.16": null
+  },
+  "lime_candle_cake": {
+    "1.16": null
+  },
+  "magenta_candle": {
+    "1.16": null
+  },
+  "magenta_candle_cake": {
+    "1.16": null
+  },
+  "medium_amethyst_bud": {
+    "1.16": null
+  },
+  "moss_block": {
+    "1.16": null
+  },
+  "moss_carpet": {
+    "1.16": null
+  },
+  "orange_candle": {
+    "1.16": null
+  },
+  "orange_candle_cake": {
+    "1.16": null
+  },
+  "oxidized_copper": {
+    "1.16": null
+  },
+  "oxidized_cut_copper": {
+    "1.16": null
+  },
+  "oxidized_cut_copper_slab": {
+    "1.16": null
+  },
+  "oxidized_cut_copper_stairs": {
+    "1.16": null
+  },
+  "pink_candle": {
+    "1.16": null
+  },
+  "pink_candle_cake": {
+    "1.16": null
+  },
+  "pointed_dripstone": {
+    "1.16": null
+  },
+  "polished_deepslate": {
+    "1.16": null
+  },
+  "polished_deepslate_slab": {
+    "1.16": null
+  },
+  "polished_deepslate_stairs": {
+    "1.16": null
+  },
+  "polished_deepslate_wall": {
+    "1.16": null
+  },
+  "potted_azalea_bush": {
+    "1.16": null
+  },
+  "potted_flowering_azalea_bush": {
+    "1.16": null
+  },
+  "powder_snow": {
+    "1.16": null
+  },
+  "powder_snow_cauldron": {
+    "1.16": null
+  },
+  "purple_candle": {
+    "1.16": null
+  },
+  "purple_candle_cake": {
+    "1.16": null
+  },
+  "raw_copper_block": {
+    "1.16": null
+  },
+  "raw_gold_block": {
+    "1.16": null
+  },
+  "raw_iron_block": {
+    "1.16": null
+  },
+  "red_candle": {
+    "1.16": null
+  },
+  "red_candle_cake": {
+    "1.16": null
+  },
+  "rooted_dirt": {
+    "1.16": null
+  },
+  "sculk_sensor": {
+    "1.16": null
+  },
+  "small_amethyst_bud": {
+    "1.16": null
+  },
+  "small_dripleaf": {
+    "1.16": null
+  },
+  "smooth_basalt": {
+    "1.16": null
+  },
+  "spore_blossom": {
+    "1.16": null
+  },
+  "tinted_glass": {
+    "1.16": null
+  },
+  "tuff": {
+    "1.16": null
+  },
+  "water_cauldron": {
+    "1.16": null
+  },
+  "waxed_copper_block": {
+    "1.16": null
+  },
+  "waxed_cut_copper": {
+    "1.16": null
+  },
+  "waxed_cut_copper_slab": {
+    "1.16": null
+  },
+  "waxed_cut_copper_stairs": {
+    "1.16": null
+  },
+  "waxed_exposed_copper": {
+    "1.16": null
+  },
+  "waxed_exposed_cut_copper": {
+    "1.16": null
+  },
+  "waxed_exposed_cut_copper_slab": {
+    "1.16": null
+  },
+  "waxed_exposed_cut_copper_stairs": {
+    "1.16": null
+  },
+  "waxed_oxidized_copper": {
+    "1.16": null
+  },
+  "waxed_oxidized_cut_copper": {
+    "1.16": null
+  },
+  "waxed_oxidized_cut_copper_slab": {
+    "1.16": null
+  },
+  "waxed_oxidized_cut_copper_stairs": {
+    "1.16": null
+  },
+  "waxed_weathered_copper": {
+    "1.16": null
+  },
+  "waxed_weathered_cut_copper": {
+    "1.16": null
+  },
+  "waxed_weathered_cut_copper_slab": {
+    "1.16": null
+  },
+  "waxed_weathered_cut_copper_stairs": {
+    "1.16": null
+  },
+  "weathered_copper": {
+    "1.16": null
+  },
+  "weathered_cut_copper": {
+    "1.16": null
+  },
+  "weathered_cut_copper_slab": {
+    "1.16": null
+  },
+  "weathered_cut_copper_stairs": {
+    "1.16": null
+  },
+  "white_candle": {
+    "1.16": null
+  },
+  "white_candle_cake": {
+    "1.16": null
+  },
+  "yellow_candle": {
+    "1.16": null
+  },
+  "yellow_candle_cake": {
+    "1.16": null
+  },
+  "frogspawn": {
+    "1.18": null
+  },
+  "mangrove_button": {
+    "1.18": null
+  },
+  "mangrove_door": {
+    "1.18": null
+  },
+  "mangrove_fence": {
+    "1.18": null
+  },
+  "mangrove_fence_gate": {
+    "1.18": null
+  },
+  "mangrove_leaves": {
+    "1.18": null
+  },
+  "mangrove_log": {
+    "1.18": null
+  },
+  "mangrove_planks": {
+    "1.18": null
+  },
+  "mangrove_pressure_plate": {
+    "1.18": null
+  },
+  "mangrove_propagule": {
+    "1.18": null
+  },
+  "mangrove_roots": {
+    "1.18": null
+  },
+  "mangrove_sign": {
+    "1.18": null
+  },
+  "mangrove_slab": {
+    "1.18": null
+  },
+  "mangrove_stairs": {
+    "1.18": null
+  },
+  "mangrove_trapdoor": {
+    "1.18": null
+  },
+  "mangrove_wall_sign": {
+    "1.18": null
+  },
+  "mangrove_wood": {
+    "1.18": null
+  },
+  "mud": {
+    "1.18": null
+  },
+  "mud_brick_slab": {
+    "1.18": null
+  },
+  "mud_brick_stairs": {
+    "1.18": null
+  },
+  "mud_brick_wall": {
+    "1.18": null
+  },
+  "mud_bricks": {
+    "1.18": null
+  },
+  "muddy_mangrove_roots": {
+    "1.18": null
+  },
+  "ochre_froglight": {
+    "1.18": null
+  },
+  "packed_mud": {
+    "1.18": null
+  },
+  "pearlescent_froglight": {
+    "1.18": null
+  },
+  "potted_mangrove_propagule": {
+    "1.18": null
+  },
+  "reinforced_deepslate": {
+    "1.18": null
+  },
+  "sculk": {
+    "1.18": null
+  },
+  "sculk_catalyst": {
+    "1.18": null
+  },
+  "sculk_shrieker": {
+    "1.18": null
+  },
+  "sculk_vein": {
+    "1.18": null
+  },
+  "stripped_mangrove_log": {
+    "1.18": null
+  },
+  "stripped_mangrove_wood": {
+    "1.18": null
+  },
+  "verdant_froglight": {
+    "1.18": null
+  },
+  "acacia_hanging_sign": {
+    "1.19": null
+  },
+  "acacia_wall_hanging_sign": {
+    "1.19": null
+  },
+  "bamboo_block": {
+    "1.19": null
+  },
+  "bamboo_button": {
+    "1.19": null
+  },
+  "bamboo_door": {
+    "1.19": null
+  },
+  "bamboo_fence": {
+    "1.19": null
+  },
+  "bamboo_fence_gate": {
+    "1.19": null
+  },
+  "bamboo_hanging_sign": {
+    "1.19": null
+  },
+  "bamboo_mosaic": {
+    "1.19": null
+  },
+  "bamboo_mosaic_slab": {
+    "1.19": null
+  },
+  "bamboo_mosaic_stairs": {
+    "1.19": null
+  },
+  "bamboo_planks": {
+    "1.19": null
+  },
+  "bamboo_pressure_plate": {
+    "1.19": null
+  },
+  "bamboo_sign": {
+    "1.19": null
+  },
+  "bamboo_slab": {
+    "1.19": null
+  },
+  "bamboo_stairs": {
+    "1.19": null
+  },
+  "bamboo_trapdoor": {
+    "1.19": null
+  },
+  "bamboo_wall_hanging_sign": {
+    "1.19": null
+  },
+  "bamboo_wall_sign": {
+    "1.19": null
+  },
+  "birch_hanging_sign": {
+    "1.19": null
+  },
+  "birch_wall_hanging_sign": {
+    "1.19": null
+  },
+  "calibrated_sculk_sensor": {
+    "1.19": null
+  },
+  "cherry_button": {
+    "1.19": null
+  },
+  "cherry_door": {
+    "1.19": null
+  },
+  "cherry_fence": {
+    "1.19": null
+  },
+  "cherry_fence_gate": {
+    "1.19": null
+  },
+  "cherry_hanging_sign": {
+    "1.19": null
+  },
+  "cherry_leaves": {
+    "1.19": null
+  },
+  "cherry_log": {
+    "1.19": null
+  },
+  "cherry_planks": {
+    "1.19": null
+  },
+  "cherry_pressure_plate": {
+    "1.19": null
+  },
+  "cherry_sapling": {
+    "1.19": null
+  },
+  "cherry_sign": {
+    "1.19": null
+  },
+  "cherry_slab": {
+    "1.19": null
+  },
+  "cherry_stairs": {
+    "1.19": null
+  },
+  "cherry_trapdoor": {
+    "1.19": null
+  },
+  "cherry_wall_hanging_sign": {
+    "1.19": null
+  },
+  "cherry_wall_sign": {
+    "1.19": null
+  },
+  "cherry_wood": {
+    "1.19": null
+  },
+  "chiseled_bookshelf": {
+    "1.19": null
+  },
+  "crimson_hanging_sign": {
+    "1.19": null
+  },
+  "crimson_wall_hanging_sign": {
+    "1.19": null
+  },
+  "dark_oak_hanging_sign": {
+    "1.19": null
+  },
+  "dark_oak_wall_hanging_sign": {
+    "1.19": null
+  },
+  "decorated_pot": {
+    "1.19": null
+  },
+  "jungle_hanging_sign": {
+    "1.19": null
+  },
+  "jungle_wall_hanging_sign": {
+    "1.19": null
+  },
+  "mangrove_hanging_sign": {
+    "1.19": null
+  },
+  "mangrove_wall_hanging_sign": {
+    "1.19": null
+  },
+  "oak_hanging_sign": {
+    "1.19": null
+  },
+  "oak_wall_hanging_sign": {
+    "1.19": null
+  },
+  "piglin_head": {
+    "1.19": null
+  },
+  "piglin_wall_head": {
+    "1.19": null
+  },
+  "pink_petals": {
+    "1.19": null
+  },
+  "pitcher_crop": {
+    "1.19": null
+  },
+  "pitcher_plant": {
+    "1.19": null
+  },
+  "potted_cherry_sapling": {
+    "1.19": null
+  },
+  "potted_torchflower": {
+    "1.19": null
+  },
+  "sniffer_egg": {
+    "1.19": null
+  },
+  "spruce_hanging_sign": {
+    "1.19": null
+  },
+  "spruce_wall_hanging_sign": {
+    "1.19": null
+  },
+  "stripped_bamboo_block": {
+    "1.19": null
+  },
+  "stripped_cherry_log": {
+    "1.19": null
+  },
+  "stripped_cherry_wood": {
+    "1.19": null
+  },
+  "suspicious_gravel": {
+    "1.19": null
+  },
+  "suspicious_sand": {
+    "1.19": null
+  },
+  "torchflower": {
+    "1.19": null
+  },
+  "torchflower_crop": {
+    "1.19": null
+  },
+  "warped_hanging_sign": {
+    "1.19": null
+  },
+  "warped_wall_hanging_sign": {
+    "1.19": null
+  },
+  "chiseled_copper": {
+    "1.20": null
+  },
+  "chiseled_tuff": {
+    "1.20": null
+  },
+  "chiseled_tuff_bricks": {
+    "1.20": null
+  },
+  "copper_bulb": {
+    "1.20": null
+  },
+  "copper_door": {
+    "1.20": null
+  },
+  "copper_grate": {
+    "1.20": null
+  },
+  "copper_trapdoor": {
+    "1.20": null
+  },
+  "crafter": {
+    "1.20": null
+  },
+  "exposed_chiseled_copper": {
+    "1.20": null
+  },
+  "exposed_copper_bulb": {
+    "1.20": null
+  },
+  "exposed_copper_door": {
+    "1.20": null
+  },
+  "exposed_copper_grate": {
+    "1.20": null
+  },
+  "exposed_copper_trapdoor": {
+    "1.20": null
+  },
+  "heavy_core": {
+    "1.20": null
+  },
+  "oxidized_chiseled_copper": {
+    "1.20": null
+  },
+  "oxidized_copper_bulb": {
+    "1.20": null
+  },
+  "oxidized_copper_door": {
+    "1.20": null
+  },
+  "oxidized_copper_grate": {
+    "1.20": null
+  },
+  "oxidized_copper_trapdoor": {
+    "1.20": null
+  },
+  "polished_tuff": {
+    "1.20": null
+  },
+  "polished_tuff_slab": {
+    "1.20": null
+  },
+  "polished_tuff_stairs": {
+    "1.20": null
+  },
+  "polished_tuff_wall": {
+    "1.20": null
+  },
+  "short_grass": {
+    "1.20": null
+  },
+  "trial_spawner": {
+    "1.20": null
+  },
+  "tuff_brick_slab": {
+    "1.20": null
+  },
+  "tuff_brick_stairs": {
+    "1.20": null
+  },
+  "tuff_brick_wall": {
+    "1.20": null
+  },
+  "tuff_bricks": {
+    "1.20": null
+  },
+  "tuff_slab": {
+    "1.20": null
+  },
+  "tuff_stairs": {
+    "1.20": null
+  },
+  "tuff_wall": {
+    "1.20": null
+  },
+  "vault": {
+    "1.20": null
+  },
+  "waxed_chiseled_copper": {
+    "1.20": null
+  },
+  "waxed_copper_bulb": {
+    "1.20": null
+  },
+  "waxed_copper_door": {
+    "1.20": null
+  },
+  "waxed_copper_grate": {
+    "1.20": null
+  },
+  "waxed_copper_trapdoor": {
+    "1.20": null
+  },
+  "waxed_exposed_chiseled_copper": {
+    "1.20": null
+  },
+  "waxed_exposed_copper_bulb": {
+    "1.20": null
+  },
+  "waxed_exposed_copper_door": {
+    "1.20": null
+  },
+  "waxed_exposed_copper_grate": {
+    "1.20": null
+  },
+  "waxed_exposed_copper_trapdoor": {
+    "1.20": null
+  },
+  "waxed_oxidized_chiseled_copper": {
+    "1.20": null
+  },
+  "waxed_oxidized_copper_bulb": {
+    "1.20": null
+  },
+  "waxed_oxidized_copper_door": {
+    "1.20": null
+  },
+  "waxed_oxidized_copper_grate": {
+    "1.20": null
+  },
+  "waxed_oxidized_copper_trapdoor": {
+    "1.20": null
+  },
+  "waxed_weathered_chiseled_copper": {
+    "1.20": null
+  },
+  "waxed_weathered_copper_bulb": {
+    "1.20": null
+  },
+  "waxed_weathered_copper_door": {
+    "1.20": null
+  },
+  "waxed_weathered_copper_grate": {
+    "1.20": null
+  },
+  "waxed_weathered_copper_trapdoor": {
+    "1.20": null
+  },
+  "weathered_chiseled_copper": {
+    "1.20": null
+  },
+  "weathered_copper_bulb": {
+    "1.20": null
+  },
+  "weathered_copper_door": {
+    "1.20": null
+  },
+  "weathered_copper_grate": {
+    "1.20": null
+  },
+  "weathered_copper_trapdoor": {
+    "1.20": null
+  }
+}
