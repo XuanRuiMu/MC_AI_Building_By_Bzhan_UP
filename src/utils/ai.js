@@ -127,7 +127,10 @@ builder.fill(x1, topY, z1, x2, topY + 2, z2, 'WALL_MATERIAL');
     }
 
     // Add User Prompt (Text OR Multimodal)
-    const userMessage = imageUrl ? {
+    // DeepSeek/部分模型不支持多模态输入，只支持纯文本
+    const supportsMultimodal = model.includes('gpt-4') || model.includes('vision') || model.includes('claude') || model.includes('qwen') || model.includes('Qwen') || model.includes('kimi') || model.includes('Kimi');
+    
+    const userMessage = imageUrl && supportsMultimodal ? {
         role: 'user',
         content: [
             { type: "text", text: userPrompt },
@@ -137,7 +140,25 @@ builder.fill(x1, topY, z1, x2, topY + 2, z2, 'WALL_MATERIAL');
 
     messages.push(userMessage);
 
+    // 硅基流动API要求system message必须在最前面，且只能有一个
+    // 先将所有system message合并为一个
+    const allSystemContents = messages.filter(m => m.role === 'system').map(m => m.content).join('\n\n---\n\n');
+    // 过滤掉原来的system messages
+    const nonSystemMessages = messages.filter(m => m.role !== 'system');
+    // 重新构建messages数组，只保留一个system message在最前面
+    messages.length = 0;
+    if (allSystemContents) {
+        messages.push({ role: 'system', content: allSystemContents });
+    }
+    messages.push(...nonSystemMessages);
+
     console.log('[AI Stream] Sending request to:', `${baseUrl}/chat/completions`);
+    console.log('[AI Stream] Request body:', JSON.stringify({
+        model: model,
+        messages: messages,
+        max_tokens: 8152,
+        stream: true
+    }, null, 2));
 
     try {
         const response = await fetch(`${baseUrl}/chat/completions`, {
@@ -156,7 +177,8 @@ builder.fill(x1, topY, z1, x2, topY + 2, z2, 'WALL_MATERIAL');
 
         if (!response.ok) {
             const err = await response.json().catch(() => ({}));
-            throw new Error(err.error?.message || `Failed to fetch from AI: ${response.statusText}`);
+            console.error('[AI Stream] Error response:', JSON.stringify(err, null, 2));
+            throw new Error(err.error?.message || err.message || `Failed to fetch from AI: ${response.status} ${response.statusText}`);
         }
 
         const reader = response.body.getReader();
@@ -283,13 +305,38 @@ function checkCodeTruncation(content) {
 
 /**
  * Generate image from text prompt
+ * 支持多种图片生成服务：OpenAI (DALL-E)、即梦AI (Jimeng)
  */
 export const generateImage = async (
     prompt,
     apiKey,
     baseUrl = 'https://api.openai.com/v1',
-    model = 'dall-e-3'
+    model = 'dall-e-3',
+    provider = 'openai',  // 'openai' | 'jimeng'
+    jimengConfig = null   // { accessKeyId, secretAccessKey }
 ) => {
+    console.log('[generateImage] Provider received:', provider);
+    console.log('[generateImage] JimengConfig:', jimengConfig ? 'provided' : 'null');
+    
+    // 即梦AI模式
+    if (provider === 'jimeng') {
+        console.log('[generateImage] Entering Jimeng mode');
+        if (!jimengConfig?.accessKeyId || !jimengConfig?.secretAccessKey) {
+            throw new Error("即梦AI配置不完整，请检查Access Key ID和Secret Access Key");
+        }
+        
+        // 动态导入即梦AI模块
+        console.log('[generateImage] Importing jimengAI module...');
+        const { generateImageWithJimeng } = await import('./jimengAI.js');
+        console.log('[generateImage] Calling generateImageWithJimeng...');
+        return generateImageWithJimeng(
+            prompt,
+            jimengConfig.accessKeyId,
+            jimengConfig.secretAccessKey
+        );
+    }
+    
+    // OpenAI/DALL-E 模式
     if (!apiKey) throw new Error("API Key is missing.");
 
     console.log('[AI Image] Generating:', prompt);

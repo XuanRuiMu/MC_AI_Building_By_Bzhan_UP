@@ -407,16 +407,35 @@ function App() {
     // Ensure all settings have defaults
     const defaults = {
       apiKey: '',
-      baseUrl: 'https://api.openai.com/v1',
-      model: 'gpt-3.5-turbo',
+      baseUrl: 'https://api.siliconflow.cn/v1',
+      model: 'Pro/moonshotai/Kimi-K2.5',
       imageModel: 'dall-e-3',
+      imageProvider: 'jimeng',  // 默认使用即梦AI
+      jimengAccessKeyId: 'AKLTODdiN2IyNDEzMzg4NGI0YjgwOTAxNTVhMDk1ODQwY2Q',    // 即梦AI Access Key ID
+      jimengSecretAccessKey: 'WVRVNE1HUTFOR0ZpWlRnMk5HTXpPRGszT0dReE5HVXdNemM1TkRNNFpUaw==', // 即梦AI Secret Access Key
       generationMode: 'fast', // Default to Fast mode
       mouseSensitivity: 1.0,
       fov: 75,
       debugMode: false,
       concurrencyCount: 1  // 新增：默认并发数为 1
     };
-    const merged = saved ? { ...defaults, ...JSON.parse(saved) } : defaults;
+    
+    let merged;
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // 特殊处理：如果 localStorage 中没有即梦AI相关字段，使用默认值
+      merged = {
+        ...defaults,
+        ...parsed,
+        // 强制使用默认的即梦AI配置（除非用户明确在设置中修改过）
+        imageProvider: parsed.imageProvider || defaults.imageProvider,
+        jimengAccessKeyId: parsed.jimengAccessKeyId || defaults.jimengAccessKeyId,
+        jimengSecretAccessKey: parsed.jimengSecretAccessKey || defaults.jimengSecretAccessKey
+      };
+    } else {
+      merged = defaults;
+    }
+    
     // Apply debug mode on initial load
     setAgentDebugMode(merged.debugMode === true);
     return merged;
@@ -464,6 +483,10 @@ function App() {
   }, [messages]);
 
   const handleSaveSettings = (newSettings) => {
+    // 清理 baseUrl 中的反引号
+    if (newSettings.baseUrl) {
+      newSettings.baseUrl = newSettings.baseUrl.replace(/`/g, '').trim();
+    }
     console.log('Saving settings:', newSettings);
     setApiSettings(newSettings);
     localStorage.setItem('mc-ai-settings', JSON.stringify(newSettings));
@@ -1035,44 +1058,72 @@ function App() {
         // Optimize Prompt for Voxel Structure Generation
         const optimizedPrompt = `Minecraft voxel style, isometric view of ${userMessage}. Pure white background, single isolated object, no terrain, no clouds, no text, cut out, high resolution`;
 
+        // 强制使用即梦AI配置
+        const imageProvider = 'jimeng';
+        const jimengConfig = {
+          accessKeyId: 'AKLTODdiN2IyNDEzMzg4NGI0YjgwOTAxNTVhMDk1ODQwY2Q',
+          secretAccessKey: 'WVRVNE1HUTFOR0ZpWlRnMk5HTXpPRGszT0dReE5HVXdNemM1TkRNNFpUaw=='
+        };
+        
+        console.log('[Image Gen] Provider:', imageProvider);
+        console.log('[Image Gen] AccessKeyId:', jimengConfig.accessKeyId.substring(0, 20) + '...');
+        
         // Log the internal prompt usage
         if (apiSettings.debugMode) {
           setDevLogs(p => [...p, {
             type: 'tool_call',
-            name: 'dall-e-3',
-            args: { prompt: optimizedPrompt, model: apiSettings.imageModel }
+            name: 'jimeng-ai',
+            args: { prompt: optimizedPrompt, provider: imageProvider }
           }]);
         }
-
+        
         const generatedUrl = await generateImage(
           optimizedPrompt,
           apiSettings.apiKey,
           apiSettings.baseUrl,
-          apiSettings.imageModel || 'dall-e-3' // Use configured image model
+          apiSettings.imageModel || 'dall-e-3',
+          imageProvider,
+          jimengConfig
         );
 
         // Log result
         if (apiSettings.debugMode) {
           setDevLogs(p => [...p, {
             type: 'tool_result',
-            name: 'dall-e-3',
+            name: 'jimeng-ai',
             result: { success: true, url: generatedUrl }
           }]);
         }
 
+        // 检查是否是即梦AI控制台链接（查询接口不可用时返回）
+        const isJimengConsoleLink = generatedUrl.includes('console.volcengine.com');
+
         // Add Assistant Message with Image and "Build" Action
         setMessages(p => {
           const clean = p.filter(m => (typeof m.content === 'string' && !m.content.startsWith('🎨')) || Array.isArray(m.content));
-          return [...clean, {
-            role: 'ai',
-            content: `Here is a concept for "${userMessage}". Click build to construct it.`,
-            imageUrl: generatedUrl,
-            originalPrompt: userMessage
-          }];
+          
+          if (isJimengConsoleLink) {
+            // 即梦AI控制台链接 - 显示特殊消息
+            return [...clean, {
+              role: 'ai',
+              content: `✅ 图片生成任务已提交到即梦AI！\n\n由于即梦AI 4.0 查询接口限制，请前往控制台查看生成的图片：\n${generatedUrl}\n\n任务ID: ${generatedUrl.includes('task_id') ? '见控制台' : '已提交'}`,
+              originalPrompt: userMessage
+            }];
+          } else {
+            // 正常图片URL - 显示图片
+            return [...clean, {
+              role: 'ai',
+              content: `Here is a concept for "${userMessage}". Click build to construct it.`,
+              imageUrl: generatedUrl,
+              originalPrompt: userMessage
+            }];
+          }
         });
 
-        // Store the image URL for future modifications
-        setReferenceImageUrl(generatedUrl);
+        // Store the image URL for future modifications (如果不是控制台链接)
+        if (!isJimengConsoleLink) {
+          setReferenceImageUrl(generatedUrl);
+        }
 
         // Save snapshot AFTER successful image generation (captures AI response + generated content)
         pushChatSnapshot();

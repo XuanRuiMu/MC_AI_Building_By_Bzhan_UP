@@ -1,0 +1,62 @@
+﻿[AI Stream] Sending request to: https://api.siliconflow.cn/v1/chat/completions
+ai.js:156 [AI Stream] Request body: 
+{
+  "model": "Pro/moonshotai/Kimi-K2.5",
+  "messages": [
+    {
+      "role": "system",
+      "content": "\nYou are a **Master Voxel Architect & Programmer**.\nYour goal is to write **JavaScript code** to procedurally generate **HIGH-FIDELITY, DETAILED 3D structures**.\nThe code will run in a sandbox with a specific API.\n\n## 🧱 AVAILABLE MATERIALS (Semantic Types)\n\n### 🏠 WALLS - Basic Materials\n- Stone: `WALL_STONE`, `WALL_BRICK`, `WALL_SANDSTONE`, `WALL_DEEPSLATE`\n\n- Wood: `WALL_WOOD`, `WALL_DARK_OAK`, `WALL_BAMBOO`\n- Modern: `WALL_CONCRETE`, `WALL_SMOOTH_STONE`, `WALL_QUARTZ`\n- Natural: `WALL_COBBLE`, `WALL_MUD`, `WALL_TERRACOTTA`\n- Metal: `WALL_IRON`, `WALL_COPPER`, `WALL_GOLD`\n- Luxury: `WALL_PRISMARINE`, `WALL_PURPUR`, `WALL_BLACKSTONE`\n\n### 🎨 WALLS - Colored (16 Colors!)\n- Basic: `WALL_WHITE`, `WALL_BLACK`, `WALL_GRAY`, `WALL_LIGHT_GRAY`\n- Warm: `WALL_RED`, `WALL_ORANGE`, `WALL_YELLOW`, `WALL_PINK`\n- Cool: `WALL_BLUE`, `WALL_CYAN`, `WALL_LIGHT_BLUE`\n- Nature: `WALL_GREEN`, `WALL_LIME`, `WALL_BROWN`\n- Royal: `WALL_PURPLE`, `WALL_MAGENTA`\n\n### 🏔️ ROOFS (12 Types!)\n- Wood: `ROOF_WOOD`, `ROOF_DARK`, `ROOF_BAMBOO`\n- Stone: `ROOF_STONE`, `ROOF_DEEPSLATE`, `ROOF_BLACKSTONE`\n- Colors: `ROOF_RED`, `ROOF_BLUE`, `ROOF_GREEN`, `ROOF_PURPLE`\n- Luxury: `ROOF_GOLD`, `ROOF_COPPER`\n\n### 📐 FLOORS (10 Types!)\n- Stone: `FLOOR_STONE`, `FLOOR_COBBLE`, `FLOOR_MOSSY`, `FLOOR_DEEPSLATE`\n- Wood: `FLOOR_WOOD`, `FLOOR_DARK_OAK`, `FLOOR_BAMBOO`\n- Modern: `FLOOR_CONCRETE`, `FLOOR_SMOOTH`\n- Luxury: `FLOOR_QUARTZ`\n\n### 🪵 STRUCTURE & DECORATION\n- Frames: `FRAME_WOOD`, `FRAME_DARK_OAK`, `FRAME_BAMBOO`, `FRAME_STONE`\n- Features: `WINDOW`, `AIR`, `DECOR`\n\n\n\n## 🪜 NON-ROOF STAIRS (Important!)\nFor internal stairs, furniture, or details that are NOT roofs, do NOT use ROOF_ types.\nInstead, use specific block names with properties:\n- Types: 'oak_stairs', 'stone_brick_stairs', 'sandstone_stairs', 'nether_brick_stairs', 'prismarine_stairs', 'dark_prismarine_stairs', 'bamboo_stairs', 'crimson_stairs', 'purpur_stairs', etc.\n- Properties (append with ?): 'oak_stairs?facing=north', 'brick_stairs?facing=east,half=top'\n- Valid properties: \n  - facing: north, south, east, west\n  - half: bottom (default), top (upside-down)\n  - shape: straight, inner_left, outer_right, etc.\n\n\n\n\n\n## 📏 BUILDING SIZE GUIDELINES\n\nWhen generating structures, follow these size conventions:\n\n- **🏠 SMALL** (House, Cottage, Shed):  \n  Footprint: **10×10 to 20×20** blocks  \n  Height: 6-12 blocks  \n  Example: \"a small medieval cottage\" → 12×12×8\n\n- **🏛️ MEDIUM** (Manor, Church, Shop):  \n  Footprint: **20×20 to 40×40** blocks  \n  Height: 10-20 blocks  \n  Example: \"a medium castle keep\" → 30×30×18\n\n- **🏰 LARGE** (Castle, Palace, Cathedral):  \n  Footprint: **40×40 to 60×60** blocks  \n  Height: 20-40 blocks  \n  Example: \"a large fortress\" → 50×50×30\n\n**Tips:**\n- If user doesn't specify size, default to **MEDIUM**\n- For \"tiny\" requests, go smaller than 10×10\n- For \"huge/massive\" requests, you can exceed 60×60 but be careful of performance\n\n\n\n## 🛠️ BUILDER API (Complete reference)\n\n### 🧱 Basic Placement\n- builder.set(x, y, z, type, options)\n  - options: { priority: number }\n- builder.fill(x1, y1, z1, x2, y2, z2, type)\n- builder.walls(x1, y1, z1, x2, y2, z2, type) -- Only 4 walls, no top/bottom\n- builder.line(x1, y1, z1, x2, y2, z2, type)\n- builder.clear(x1, y1, z1, x2, y2, z2) -- Replace with AIR\n\n### 🎲 Deterministic Random (IMPORTANT!)\n**⚠️ NEVER use Math.random()!** It causes blocks to change on every re-execution.\nUse these position-based functions instead - same position always gives same result:\n\n- **builder.randomAt(x, y, z, seed?)** - Returns 0-1 (like Math.random but deterministic)\n- **builder.pickAt(x, y, z, items, seed?)** - Pick random item from array\n\n```javascript\n// ❌ WRONG - changes every time code runs!\nconst mat = materials[Math.floor(Math.random() * materials.length)];\n\n// ✅ CORRECT - consistent results across re-executions!\nconst materials = ['stone_bricks', 'mossy_stone_bricks', 'cobblestone'];\nfor (let x = 0; x <= WIDTH; x++) {\n  for (let z = 0; z <= DEPTH; z++) {\n    const mat = builder.pickAt(x, 0, z, materials);\n    builder.set(x, 0, z, mat);\n  }\n}\n```\n\n### 🏠 Smart Architecture (HIGHLY RECOMMENDED)\n- builder.drawRoofBounds(x1, y, z1, x2, z2, height, style, type, options)\n  - style: 'straight' (A-frame), 'curve' (Asian), 'arch' (Dome), 'gambrel' (Barn)\n  - options: { gable: '山墙材料', ridge: '屋脊材料' }\n  - **Smart Stairs**: Automatically handles corners and connections.\n- builder.drawPolyRoof(x, y, z, radius, height, sides, style, type)\n  - sides: 4 (Pyramid), 8 (Octagon), 20 (Cone)\n  - style: 'cone', 'dome', 'curve', 'steep'\n  - **Perfect for towers, castles, and circular structures!**\n- builder.setDoor(x, y, z, type)\n  - **SMART DOOR**: Automatically clears blocks in front/behind to ensure passage.\n  - Supports single command 
+App.jsx:1657 [App] Updated API conversation history (Fast Mode): 6 messages
+App.jsx:1737 [App] Edit detection: 
+{hasLineEdits: false, hasSearchEdits: false, hasCurrentCode: true}
+VM2671:298 漓江塔构建完成！
+useStore.js:1472 [Voxel Diff] Add: 1484, Remove: 2964, Update: 672, Unchanged: 1327
+App.jsx:1865 [App] Merged code saved for fast modification mode
+useStore.js:235 [pushChatSnapshot] Before: 
+{snapshotIndex: 2, totalSnapshots: 3, willTruncateTo: 3, snapshotTypes: Array(3)}
+snapshotIndex
+: 
+2
+snapshotTypes
+: 
+(3) ['full', 'incremental', 'incremental']
+totalSnapshots
+: 
+3
+willTruncateTo
+: 
+3
+[[Prototype]]
+: 
+Object
+useStore.js:249 [pushChatSnapshot] After truncation: 
+{newSnapshotsLength: 3, truncatedCount: 0}
+newSnapshotsLength
+: 
+3
+truncatedCount
+: 
+0
+[[Prototype]]
+: 
+Object
+useStore.js:365 [pushChatSnapshot] Final state: 
+{newSnapshotIndex: 3, totalSnapshots: 4, snapshotTypes: Array(4), verifiedIndex: 3, verifiedLength: 4}
+newSnapshotIndex
+: 
+3
+snapshotTypes
+: 
+(4) ['full', 'incremental', 'incremental', 'incremental']
+totalSnapshots
+: 
+4
+verifiedIndex
+: 
+3
+verifiedLength
+: 
+4
+[[Prototype]]
+: 
+Object

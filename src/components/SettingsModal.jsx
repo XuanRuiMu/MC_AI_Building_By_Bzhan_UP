@@ -67,8 +67,8 @@ export default function SettingsModal({ isOpen, onClose, onSave, initialSettings
     const [settings, setSettings] = useState(() => {
         const defaults = {
             apiKey: '',
-            baseUrl: 'https://api.openai.com/v1',
-            model: 'gpt-3.5-turbo',
+            baseUrl: 'https://api.siliconflow.cn/v1',
+            model: 'Pro/moonshotai/Kimi-K2.5',
             maxTokens: 16384,
             mouseSensitivity: 1.0,
             fov: 75,
@@ -83,7 +83,15 @@ export default function SettingsModal({ isOpen, onClose, onSave, initialSettings
             officialSkillOverrides: {},
             officialScriptOverrides: {},
             customResources: [],
-            concurrencyCount: 1  // 新增：默认并发数为 1
+            concurrencyCount: 1,  // 新增：默认并发数为 1
+            // 图片生成设置
+            imageProvider: 'jimeng',  // 默认使用即梦AI
+            imageModel: 'dall-e-3',
+            imageUseSameApi: true,
+            imageBaseUrl: '',
+            imageApiKey: '',
+            jimengAccessKeyId: 'AKLTODdiN2IyNDEzMzg4NGI0YjgwOTAxNTVhMDk1ODQwY2Q',
+            jimengSecretAccessKey: 'WVRVNE1HUTFOR0ZpWlRnMk5HTXpPRGszT0dReE5HVXdNemM1TkRNNFpUaw=='
         };
         
         if (!initialSettings) return defaults;
@@ -738,7 +746,13 @@ ${newResourceContent.trim() || '# 参考文档\n'}`;
                 apiKey: settings.apiKey,
                 baseUrl: settings.baseUrl,
                 model: settings.model,
-                imageModel: settings.imageModel
+                imageModel: settings.imageModel,
+                imageProvider: settings.imageProvider,
+                imageUseSameApi: settings.imageUseSameApi,
+                imageBaseUrl: settings.imageBaseUrl,
+                imageApiKey: settings.imageApiKey,
+                jimengAccessKeyId: settings.jimengAccessKeyId,
+                jimengSecretAccessKey: settings.jimengSecretAccessKey
             }
         };
 
@@ -757,7 +771,13 @@ ${newResourceContent.trim() || '# 参考文档\n'}`;
                     apiKey: profile.data.apiKey,
                     baseUrl: profile.data.baseUrl,
                     model: profile.data.model,
-                    imageModel: profile.data.imageModel
+                    imageModel: profile.data.imageModel,
+                    imageProvider: profile.data.imageProvider || 'openai',
+                    imageUseSameApi: profile.data.imageUseSameApi !== false,
+                    imageBaseUrl: profile.data.imageBaseUrl || '',
+                    imageApiKey: profile.data.imageApiKey || '',
+                    jimengAccessKeyId: profile.data.jimengAccessKeyId || '',
+                    jimengSecretAccessKey: profile.data.jimengSecretAccessKey || ''
                 }));
                 setConfirmDialog(null);
             }
@@ -2366,8 +2386,8 @@ ${contentWithoutFrontmatter}`;
                                         </label>
                                         <div className="flex gap-1 bg-black/30 rounded-lg p-0.5">
                                             <button
-                                                onClick={() => setSettings({ ...settings, imageUseSameApi: true })}
-                                                className={`px-2 py-1 text-[10px] rounded-md flex items-center gap-1 transition-all ${settings.imageUseSameApi !== false
+                                                onClick={() => setSettings({ ...settings, imageProvider: 'openai', imageUseSameApi: true })}
+                                                className={`px-2 py-1 text-[10px] rounded-md flex items-center gap-1 transition-all ${settings.imageProvider !== 'jimeng' && settings.imageUseSameApi !== false
                                                     ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30'
                                                     : 'text-neutral-500 hover:text-neutral-300'
                                                     }`}
@@ -2376,8 +2396,8 @@ ${contentWithoutFrontmatter}`;
                                                 {t('imageSameApi')}
                                             </button>
                                             <button
-                                                onClick={() => setSettings({ ...settings, imageUseSameApi: false })}
-                                                className={`px-2 py-1 text-[10px] rounded-md flex items-center gap-1 transition-all ${settings.imageUseSameApi === false
+                                                onClick={() => setSettings({ ...settings, imageProvider: 'openai', imageUseSameApi: false })}
+                                                className={`px-2 py-1 text-[10px] rounded-md flex items-center gap-1 transition-all ${settings.imageProvider !== 'jimeng' && settings.imageUseSameApi === false
                                                     ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
                                                     : 'text-neutral-500 hover:text-neutral-300'
                                                     }`}
@@ -2385,40 +2405,93 @@ ${contentWithoutFrontmatter}`;
                                                 <Unlink size={10} />
                                                 {t('imageSeparateApi')}
                                             </button>
+                                            <button
+                                                onClick={() => setSettings({ ...settings, imageProvider: 'jimeng', imageUseSameApi: false })}
+                                                className={`px-2 py-1 text-[10px] rounded-md flex items-center gap-1 transition-all ${settings.imageProvider === 'jimeng'
+                                                    ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                                                    : 'text-neutral-500 hover:text-neutral-300'
+                                                    }`}
+                                            >
+                                                <span className="text-[8px]">即梦</span>
+                                                即梦AI
+                                            </button>
                                         </div>
                                     </div>
 
-                                    <input
-                                        type="text"
-                                        value={settings.imageModel || ''}
-                                        onChange={(e) => setSettings({ ...settings, imageModel: e.target.value })}
-                                        className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-neutral-200 focus:border-orange-500 outline-none transition-all placeholder:text-neutral-700 font-mono"
-                                        placeholder="stabilityai/stable-diffusion-3-5-large"
-                                    />
-
-                                    {settings.imageUseSameApi === false && (
-                                        <div className="space-y-2 pl-3 border-l-2 border-purple-500/30 animate-in slide-in-from-top-2 duration-200">
+                                    {settings.imageProvider === 'jimeng' ? (
+                                        // 即梦AI配置
+                                        <div className="space-y-3 pl-3 border-l-2 border-blue-500/30 animate-in slide-in-from-top-2 duration-200">
+                                            <div className="text-[10px] text-blue-400/80">
+                                                {language === 'zh' 
+                                                    ? '使用火山引擎即梦AI 4.0生成图片' 
+                                                    : 'Use Volcengine Jimeng AI 4.0 for image generation'}
+                                            </div>
                                             <div className="space-y-1">
-                                                <label className="text-[10px] font-medium text-purple-400/80 block">{t('imageBaseUrl')}</label>
+                                                <label className="text-[10px] font-medium text-blue-400/80 block">
+                                                    {language === 'zh' ? 'Access Key ID' : 'Access Key ID'}
+                                                </label>
                                                 <input
                                                     type="text"
-                                                    value={settings.imageBaseUrl || ''}
-                                                    onChange={(e) => setSettings({ ...settings, imageBaseUrl: e.target.value })}
-                                                    className="w-full bg-black/40 border border-purple-500/20 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:border-purple-500/50 outline-none transition-all placeholder:text-neutral-700 font-mono"
-                                                    placeholder="https://api.siliconflow.cn/v1"
+                                                    value={settings.jimengAccessKeyId || ''}
+                                                    onChange={(e) => setSettings({ ...settings, jimengAccessKeyId: e.target.value })}
+                                                    className="w-full bg-black/40 border border-blue-500/20 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:border-blue-500/50 outline-none transition-all placeholder:text-neutral-700 font-mono"
+                                                    placeholder="AKLT..."
                                                 />
                                             </div>
                                             <div className="space-y-1">
-                                                <label className="text-[10px] font-medium text-purple-400/80 block">{t('imageApiKey')}</label>
+                                                <label className="text-[10px] font-medium text-blue-400/80 block">
+                                                    {language === 'zh' ? 'Secret Access Key' : 'Secret Access Key'}
+                                                </label>
                                                 <input
                                                     type="password"
-                                                    value={settings.imageApiKey || ''}
-                                                    onChange={(e) => setSettings({ ...settings, imageApiKey: e.target.value })}
-                                                    className="w-full bg-black/40 border border-purple-500/20 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:border-purple-500/50 outline-none transition-all placeholder:text-neutral-700 font-mono"
-                                                    placeholder="sk-..."
+                                                    value={settings.jimengSecretAccessKey || ''}
+                                                    onChange={(e) => setSettings({ ...settings, jimengSecretAccessKey: e.target.value })}
+                                                    className="w-full bg-black/40 border border-blue-500/20 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:border-blue-500/50 outline-none transition-all placeholder:text-neutral-700 font-mono"
+                                                    placeholder="WVRVNE1HUTFOR0..."
                                                 />
                                             </div>
+                                            <p className="text-[10px] text-neutral-600">
+                                                {language === 'zh' 
+                                                    ? '密钥获取：https://console.volcengine.com/iam/keymanage' 
+                                                    : 'Get keys: https://console.volcengine.com/iam/keymanage'}
+                                            </p>
                                         </div>
+                                    ) : (
+                                        // OpenAI兼容API配置
+                                        <>
+                                            <input
+                                                type="text"
+                                                value={settings.imageModel || ''}
+                                                onChange={(e) => setSettings({ ...settings, imageModel: e.target.value })}
+                                                className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-neutral-200 focus:border-orange-500 outline-none transition-all placeholder:text-neutral-700 font-mono"
+                                                placeholder="stabilityai/stable-diffusion-3-5-large"
+                                            />
+
+                                            {settings.imageUseSameApi === false && (
+                                                <div className="space-y-2 pl-3 border-l-2 border-purple-500/30 animate-in slide-in-from-top-2 duration-200">
+                                                    <div className="space-y-1">
+                                                        <label className="text-[10px] font-medium text-purple-400/80 block">{t('imageBaseUrl')}</label>
+                                                        <input
+                                                            type="text"
+                                                            value={settings.imageBaseUrl || ''}
+                                                            onChange={(e) => setSettings({ ...settings, imageBaseUrl: e.target.value })}
+                                                            className="w-full bg-black/40 border border-purple-500/20 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:border-purple-500/50 outline-none transition-all placeholder:text-neutral-700 font-mono"
+                                                            placeholder="https://api.siliconflow.cn/v1"
+                                                        />
+                                                    </div>
+                                                    <div className="space-y-1">
+                                                        <label className="text-[10px] font-medium text-purple-400/80 block">{t('imageApiKey')}</label>
+                                                        <input
+                                                            type="password"
+                                                            value={settings.imageApiKey || ''}
+                                                            onChange={(e) => setSettings({ ...settings, imageApiKey: e.target.value })}
+                                                            className="w-full bg-black/40 border border-purple-500/20 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:border-purple-500/50 outline-none transition-all placeholder:text-neutral-700 font-mono"
+                                                            placeholder="sk-..."
+                                                        />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </>
                                     )}
                                 </div>
 

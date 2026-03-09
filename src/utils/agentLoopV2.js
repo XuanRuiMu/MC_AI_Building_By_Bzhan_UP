@@ -1613,13 +1613,21 @@ Example: modify_code({ action: "replace", startLine: 15, endLine: 20, content: "
 
     // Add user request with optional image
     if (imageUrl) {
-        messages.push({
-            role: 'user',
-            content: [
-                { type: "text", text: userPrompt },
-                { type: "image_url", image_url: { url: imageUrl } }
-            ]
-        });
+        // 检查模型是否支持多模态输入
+        const supportsMultimodal = model.includes('gpt-4') || model.includes('vision') || model.includes('claude') || model.includes('qwen') || model.includes('Qwen') || model.includes('kimi') || model.includes('Kimi');
+        
+        if (supportsMultimodal) {
+            messages.push({
+                role: 'user',
+                content: [
+                    { type: "text", text: userPrompt },
+                    { type: "image_url", image_url: { url: imageUrl } }
+                ]
+            });
+        } else {
+            // 模型不支持多模态，只发送文本
+            messages.push({ role: 'user', content: userPrompt });
+        }
     } else {
         messages.push({ role: 'user', content: userPrompt });
     }

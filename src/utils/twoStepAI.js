@@ -347,13 +347,24 @@ export async function twoStepGenerateWithContext(
     const planningRequest = `I want to build: "${userPrompt}"\n\nFirst, create a detailed JSON building plan following the PHASE 1 instructions.`;
 
     if (imageUrl) {
-        conversation.push({
-            role: 'user',
-            content: [
-                { type: "text", text: planningRequest },
-                { type: "image_url", image_url: { url: imageUrl } }
-            ]
-        });
+        // 检查模型是否支持多模态输入
+        const supportsMultimodal = model.includes('gpt-4') || model.includes('vision') || model.includes('claude') || model.includes('qwen') || model.includes('Qwen') || model.includes('kimi') || model.includes('Kimi');
+        
+        if (supportsMultimodal) {
+            conversation.push({
+                role: 'user',
+                content: [
+                    { type: "text", text: planningRequest },
+                    { type: "image_url", image_url: { url: imageUrl } }
+                ]
+            });
+        } else {
+            // 模型不支持多模态，只发送文本
+            conversation.push({
+                role: 'user',
+                content: planningRequest
+            });
+        }
     } else {
         conversation.push({
             role: 'user',

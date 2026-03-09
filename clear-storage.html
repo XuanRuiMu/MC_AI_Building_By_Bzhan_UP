@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>清除 LocalStorage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #1a1a2e;
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: #16213e;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        h1 { color: #e94560; }
+        button {
+            background: #e94560;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover { background: #ff6b6b; }
+        .success { color: #4ecca3; margin-top: 20px; }
+        .info { color: #aaa; margin-top: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧹 清除 LocalStorage</h1>
+        <p>点击下面的按钮清除 Minecraft AI 建筑的本地存储数据</p>
+        <button onclick="clearStorage()">清除 mc-ai-settings</button>
+        <button onclick="clearAll()">清除所有存储</button>
+        <div id="result"></div>
+        <p class="info">清除后请刷新 Minecraft AI 建筑页面</p>
+    </div>
+
+    <script>
+        function clearStorage() {
+            localStorage.removeItem('mc-ai-settings');
+            localStorage.removeItem('mc_ai_api_profiles');
+            document.getElementById('result').innerHTML = 
+                '<p class="success">✅ 已清除 mc-ai-settings 和 mc_ai_api_profiles</p>';
+        }
+        
+        function clearAll() {
+            localStorage.clear();
+            document.getElementById('result').innerHTML = 
+                '<p class="success">✅ 已清除所有 localStorage 数据</p>';
+        }
+    </script>
+</body>
+</html>
