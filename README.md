@@ -9,6 +9,8 @@
 [![Issues](https://img.shields.io/github/issues/XuanRuiMu/MC_AI_Building_By_Bzhan_UP)](https://github.com/XuanRuiMu/MC_AI_Building_By_Bzhan_UP/issues)
 [![Repo Size](https://img.shields.io/github/repo-size/XuanRuiMu/MC_AI_Building_By_Bzhan_UP)](https://github.com/XuanRuiMu/MC_AI_Building_By_Bzhan_UP)
 
+> 🌐 简体中文 ｜ [English](README_EN.md)
+
 ---
 
 ## 这是什么？
